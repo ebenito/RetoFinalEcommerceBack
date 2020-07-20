@@ -1,0 +1,16 @@
+{
+  "name": "retofinalecommerceback",
+  "version": "1.0.0",
+  "description": "Aplicación de backend para tienda online. Reto final del bootcamp de backend de GeeksHubs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "mongoose"
+  ],
+  "author": "Esteban Benito",
+  "license": "ISC"
+}
