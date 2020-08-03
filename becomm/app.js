@@ -1,3 +1,5 @@
+require('./config/mongoose');
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -38,4 +40,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// const sendgrid = require("./helpers/sendgrid");
+// sendgrid.EnviarFactura("esteban.benito@gmail.com");
+// if (sendgrid.resultado == "OK")
+// {
+//     console.log("correo enviado");
+// }
 module.exports = app;
