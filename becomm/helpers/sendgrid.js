@@ -26,14 +26,14 @@ function EnviarCorreo(emailPara, Asunto, CuerpoPlano, CuerpoHTML)
 }
 
 
-function EnviarMailBienvenida(email)
+function EnviarMailBienvenida(email, nombre)
 {
     sgMail.send({
         to: email,
         from: process.env.email,
-        subject: 'Bienvenido!',
-        html: '<h3>Bienvenido a mi web f</h3>',
-        //}, {
+        subject: '¡Bienvenido!',
+        html: `<h3>Bienvenido ${nombre} a mi Comercio Electronico <font color='red'>b</font>e<font color='red'>C</font>omm</h3>`,
+        }, {
             "filters" : {
               "footer" : {
                 "settings" : {

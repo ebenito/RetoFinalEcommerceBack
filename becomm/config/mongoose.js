@@ -17,7 +17,7 @@ let MONGO_URI;
   //console.log('Intentado conectar a MongoBD: ' + MONGO_URI);
 
   require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-    console.log('Desde el servidor MongoBD con IP: '+ add);
+    console.log('Intentando conectar con el servidor MongoBD desde la IP: ' + add);
   })
 
 mongoose
@@ -29,6 +29,8 @@ mongoose
   })
   .then(() =>
     console.log("Conectado con éxito a MongoDB, en " + process.env.Entorno))
-  .catch((error) => 
-    console.error(error));
+  .catch((error) => {
+    console.log('Ocurrió un error a concectar al servidor MongoDB:' + error);
+    console.error(error);
+  });
   
