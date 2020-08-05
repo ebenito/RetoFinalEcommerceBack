@@ -17,7 +17,7 @@ function EnviarMailBienvenida(user) {
           Gracias ${user.name} por registrarte en nuestro sitio web.
           <br />
           Haz click
-          <a href="https://becomm-api.herokuapp.com/users/confirm/${user.id}">aqu&iacute;</a>
+          <a href="https://becomm.herokuapp.com/users/confirm/${user.id}">aqu&iacute;</a>
           para confirmar tu registro.
       </div>
   </body>
