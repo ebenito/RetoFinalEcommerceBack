@@ -1,80 +1,73 @@
-require('dotenv').config();
+require("dotenv").config();
 
 // using Twilio SendGrid's v3 Node.js Library
 // https://github.com/sendgrid/sendgrid-nodejs
-const sgMail = require('@sendgrid/mail');
+const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-function EnviarCorreo(emailPara, Asunto, CuerpoPlano, CuerpoHTML)
-{  
-    const msg = {
-        from: process.env.email,
-        to: emailPara,
-        subject: Asunto,
-        text: CuerpoPlano,
-        html: CuerpoHTML,
-    };
-
-    sgMail.send(msg)
-        .then(this.resultado= "OK")
-        .catch(error => {
-            this.resultado= "KO";
-            console.error(error);
-            res.status(500).send(error);
-        });
-
+function EnviarMailBienvenida(user) {
+  const htmlmail = `
+  <html>
+  <body>
+  <h3>Bienvenido <font color='blue'>${user.name}</font> a mi Comercio Electronico <font color='red'>b</font>e<font color='red'>C</font>omm</h3>
+      <img src="https://rciproducciones.files.wordpress.com/2017/01/a540b0498bad80c0269f21900050c899.png"
+          alt="Bienvenido" />
+      <hr />
+      <div>
+          Gracias ${user.name} por registrarte en nuestro sitio web.
+          <br />
+          Haz click
+          <a href="https://becomm-api.herokuapp.com/users/confirm/${user.id}">aqu&iacute;</a>
+          para confirmar tu registro.
+      </div>
+  </body>
+  </html>
+  `;
+  sgMail.send({
+      to: user.email,
+      from: process.env.email,
+      subject: `¡Bienvenido ${user.name}!`,
+      html: htmlmail,
+    })
+      .then((this.resultado = "OK"))
+      .catch((error) => {
+        this.resultado = "KO";
+        console.error(error);
+        res.status(500).send(error);
+      });
 }
 
 
-function EnviarMailBienvenida(email, nombre)
-{
-    sgMail.send({
-        to: email,
-        from: process.env.email,
-        subject: '¡Bienvenido!',
-        html: `<h3>Bienvenido ${nombre} a mi Comercio Electronico <font color='red'>b</font>e<font color='red'>C</font>omm</h3>`,
-        }, {
-            "filters" : {
-              "footer" : {
-                "settings" : {
-                  "enable" : 1,
-                  "text/html" : "<p>Gracias,<br />The SendGrid Team<p>",
-                  "text/plain" : "Thanks,\n The SendGrid Team"
-                }
-              }
-            },
-        files: [
-            {
-                filename:     '',           // required only if file.content is used.
-                contentType:  '',           // optional
-                cid:          '',           // optional, used to specify cid for inline content
-                path:         '',           //
-                url:          '',           // == One of these three options is required
-                content:      ('' | Buffer) //
-            }
-        ]
-          })
-        .then(this.resultado= "OK")
-        .catch(error => {
-            this.resultado= "KO";
-            console.error(error);
-            res.status(500).send(error);
-    });
+function EnviarCorreo(emailPara, Asunto, CuerpoPlano, CuerpoHTML) {
+  const msg = {
+    from: process.env.email,
+    to: emailPara,
+    subject: Asunto,
+    text: CuerpoPlano,
+    html: CuerpoHTML,
+  };
 
-};
+  sgMail
+    .send(msg)
+    .then((this.resultado = "OK"))
+    .catch((error) => {
+      this.resultado = "KO";
+      console.error(error);
+      res.status(500).send(error);
+    });
+}
+
 
 var fs = require("fs");
-function base64_encode(file){
-    let bitmap = fs.readFileSync(file);
-    return new Buffer.from(bitmap).toString('base64');
-  }
+function base64_encode(file) {
+  let bitmap = fs.readFileSync(file);
+  return new Buffer.from(bitmap).toString("base64");
+}
 
+function EnviarFactura(email, res) {
+  let data_base64 = base64_encode("./Facturas/prueba.pdf");
 
-function EnviarFactura(email, res)
-{
-    let data_base64 = base64_encode('./Facturas/prueba.pdf');
-
-    const msg = {
+  const msg = {
     to: email,
     from: process.env.email,
     subject: `Factura`,
@@ -84,21 +77,22 @@ function EnviarFactura(email, res)
       {
         filename: `invoice.pdf`,
         content: data_base64,
-        type: 'application/pdf',
-        disposition: 'attachment'
-      }
-     ]
-    };
-    
-    sgMail.send(msg)
+        type: "application/pdf",
+        disposition: "attachment",
+      },
+    ],
+  };
+
+  sgMail
+    .send(msg)
     .then((response) => {
-        this.resultado= "OK"
+      this.resultado = "OK";
     })
     .catch((error) => {
-        this.resultado= 'KO'
+      this.resultado = "KO";
     });
 }
 
-module.exports.enviarCorreo = EnviarCorreo;
 module.exports.EnviarMailBienvenida = EnviarMailBienvenida;
+module.exports.enviarCorreo = EnviarCorreo;
 module.exports.EnviarFactura = EnviarFactura;
