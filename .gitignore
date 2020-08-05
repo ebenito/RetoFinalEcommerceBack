@@ -1,2 +1,2 @@
-/becomm/node_modules
-/becomm/.env
+node_modules
+.env
