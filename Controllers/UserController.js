@@ -20,7 +20,8 @@ const UserController = {
             //console.log(req.body.password, hash);
             console.log('  -  Ejecutado UserController.registerAsync');
             req.body.password = hash;
-
+            
+            req.body.role = 'cliente';
             req.body.confirmed = false;
             const user = await User.create(req.body);
             
@@ -37,6 +38,9 @@ const UserController = {
         const hash = bcrypt.hashSync(req.body.password,9);
         console.log(req.body.password, hash)
         req.body.password = hash;
+        
+        req.body.role = 'cliente';
+        req.body.confirmed = false;
 
         User.create(req.body)
         .then(user=>{
@@ -138,6 +142,44 @@ const UserController = {
                 error
             });
         });
+    },
+    async login(req, res) {
+        try {
+            const user = await User.findOne({
+                $or: [{
+                    email: req.body.email
+                }, {
+                    username: req.body.username
+                }]
+            });
+            if (!user) {
+                return res.status(400).send({
+                    message: 'Usuario o email incorrecto'
+                });
+            }
+            const isMatch = await bcrypt.compare(req.body.password, user.password);
+            console.log("Compara:", req.body.password, user.password);
+            if (!isMatch) {
+                return res.status(400).send({
+                    message: 'Credenciales incorrectas'
+                });
+            }
+            const token = await user.generateAuthToken();
+            if (user.tokens.length >= 5) user.tokens.shift();
+            user.tokens.push(token);
+            await User.findByIdAndUpdate(user._id, {
+                tokens: user.tokens
+            });
+            res.send({
+                user,
+                token
+            })
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({
+                message: 'Ocurrió un problema al indentificar al usuario'
+            })
+        }
     }
 }
 
