@@ -21,7 +21,7 @@ const UserController = {
             console.log('  -  Ejecutado UserController.registerAsync');
             req.body.password = hash;
             
-            req.body.role = 'cliente';
+            req.body.rol = 'cliente';
             req.body.confirmed = false;
             const user = await User.create(req.body);
             
@@ -39,7 +39,7 @@ const UserController = {
         console.log(req.body.password, hash)
         req.body.password = hash;
         
-        req.body.role = 'cliente';
+        req.body.rol = 'cliente';
         req.body.confirmed = false;
 
         User.create(req.body)
