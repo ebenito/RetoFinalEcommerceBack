@@ -1,3 +1,15 @@
 <h1>Usuario de beComm</h1>
 
-{{user.name}}
+
+<ul>
+    {{#each user}}    
+        {{#if this.name }}
+            <li>ID: {{_id}}</li>
+            <li>Nombre: {{name}}</li>
+            <li>Email: {{email}}</li>
+            <li>Tipo de usuario: {{rol}}</li>
+            <li>Confirmado: {{confirmed}}</li>
+            <br />
+        {{/if}}
+    {{/each}}
+</ul>
