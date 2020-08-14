@@ -11,14 +11,14 @@ const authenticate = async(req, res, next) => {
         });
         if (!user) {
             return res.status(401).send({
-                message: 'You are not authorized'
+                message: 'Usted no está autorizado'
             });
         }
         req.user = user;
         next();
     } catch (error) {
         console.error(error)
-        res.status(401).send({ message: 'You are not authorized', error })
+        res.status(401).send({ message: 'Acceso no autorizado', error })
     }
 }
 

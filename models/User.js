@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
     email:{
         type:String,
         unique:true,
-        required:true
+        required:true, 
+        set: toLower
         },
     password:{
         type:String,
@@ -40,6 +41,9 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
+function toLower(v) {
+    return v.toLowerCase();
+  }
 
 UserSchema.methods.generateAuthToken = function() {
     const user = this;

@@ -3,16 +3,18 @@ var router = express.Router();
 
 const User= require('../models/User');
 const UserController = require('../Controllers/UserController');
+const authenticate = require('../middleware/authenticate');
 
 router.get('/', UserController.getAll);
+
+router.post('/registrar', UserController.registerAsync); //Crear cliente en DB y le envía correo de bienvenida, con link para confirmar
+router.post('/registrar/sync', UserController.registerSync);
 
 router.get('/confirm/:id', UserController.confirmAsync);
 router.get('/confirm/sync/:id', UserController.confirmSync);
 
-router.post('/', UserController.registerAsync);
-router.post('/sync', UserController.registerSync);
-
 router.post('/login', UserController.login)
+router.get('/logout', authenticate, UserController.logout);
 
 router.put('/:id', UserController.updateAsyc);
 router.put('/sync/:id', UserController.updateSync);
