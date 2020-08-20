@@ -31,7 +31,11 @@ const UserController = {
       res.status(201).send(user)
     } catch (error) {
       console.error(error)
-      res.status(500).send(error)
+      if (error.keyPattern != null) {       
+        return res.status(400).send({"message": "El usuario y/o email indicados ya estaban registrados; si es suyo trate de iniciar sesión, sino registrese con otro usuario distinto"});                                       
+      }else{
+          res.status(500).send(error)
+      }      
     }
   },
   registerSync(req, res) {
@@ -209,8 +213,8 @@ const UserController = {
       }
       
       const token = await user.generateAuthToken()
-      if (user.tokens.length >= 5) user.tokens.shift()
-      user.tokens.push(token)
+      if (user.tokens.length >= 5) user.tokens.shift()  //Solo guardo los 5 ultimos tokens, asi, si hay 5 o más, quito el más antiguo
+      user.tokens.push(token) // y añado el nuevo.
 
       await User.findByIdAndUpdate(user._id, {
         tokens: user.tokens,
@@ -227,19 +231,26 @@ const UserController = {
     }
   },
   async logout(req, res) {
-    const user = await UserModel.findByIdAndUpdate(
-      req.user._id,
-      {
-        $pull: {
-          tokens: req.headers.authorization,
+    try {
+      const user = await User.findByIdAndUpdate(
+        req.user._id,  //Lo obtiene del token recibido en la cabecera Authorization
+        {
+          $pull: {
+            tokens: req.headers.authorization,
+          },
         },
-      },
-      { new: true }
-    )
-    res.json({
-      user,
-      message: `${user.name} cerró sesión`,
-    })
+        { new: true }
+      )
+      res.json({
+        user,
+        message: `${user.name} cerró sesión`,
+      })      
+    } catch (error) {
+      console.error(error)
+      res.status(500).send({
+        message: "Ocurrió un desconectar al usuario",
+      })
+    }
   },
 }
 

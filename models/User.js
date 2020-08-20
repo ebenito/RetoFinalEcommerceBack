@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const jwt  = require( 'jsonwebtoken');
+require('dotenv').config();
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
@@ -47,7 +48,7 @@ function toLower(v) {
 
 UserSchema.methods.generateAuthToken = function() {
     const user = this;
-    const token = jwt.sign({ _id: user._id }, 'beCommTokenSystem', { expiresIn: '2y' });
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '2y' });
     return token;
 }
 

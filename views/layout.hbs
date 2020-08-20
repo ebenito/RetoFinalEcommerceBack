@@ -2,11 +2,16 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />    
+    <link rel='stylesheet' href='/stylesheets/formularios.css' />
     <script src='/js/main.js'></script>
   </head>
   <body>
-    <div id="login"><a href="login">Iniciar sesión</a></div>
+    <div style="display: flex; ">
+      <div id="login"><a href="/login">Iniciar sesión</a></div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <div id="registro"><a href="/registro">Crear una cuenta</a></div>
+    </div>
     <header></header>
     {{{body}}}
   </body>

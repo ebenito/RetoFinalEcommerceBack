@@ -1,0 +1,15 @@
+GET http://localhost:3000/registro
+
+###
+
+POST http://localhost:3000/users/registrar
+content-type: application/json
+
+{
+    "name": "prueba",
+    "username": "TEST",
+    "email":"prueba@hotmail.es",
+    "password":"1234"
+}
+
+###

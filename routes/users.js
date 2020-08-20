@@ -14,7 +14,7 @@ router.get('/confirm/:id', UserController.confirmAsync);
 router.get('/confirm/sync/:id', UserController.confirmSync);
 
 router.post('/login', UserController.login)
-router.get('/logout', authenticate, UserController.logout);
+router.post('/logout', authenticate, UserController.logout); //Solo accesible si está autenticado
 
 router.put('/:id', UserController.updateAsyc);
 router.put('/sync/:id', UserController.updateSync);
