@@ -212,13 +212,15 @@ const UserController = {
         })
       }
       
-      const token = await user.generateAuthToken()
-      if (user.tokens.length >= 5) user.tokens.shift()  //Solo guardo los 5 ultimos tokens, asi, si hay 5 o más, quito el más antiguo
-      user.tokens.push(token) // y añado el nuevo.
+      const token = await user.generateAuthToken();
+      if (user.tokens.length >= 5) 
+        user.tokens.shift();  //Solo guardo los 5 ultimos tokens, asi, si hay 5 o más, quito el más antiguo
+      user.tokens.push(token); // y añado el nuevo.
 
       await User.findByIdAndUpdate(user._id, {
-        tokens: user.tokens,
-      })
+        tokens: user.tokens
+      });
+
       res.send({
         user,
         token,

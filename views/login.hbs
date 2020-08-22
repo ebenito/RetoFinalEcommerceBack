@@ -1,7 +1,20 @@
 <h1>Login</h1>
-<form onsubmit="login(event)">
-    {{!-- <input type="text" name="username" placeholder="usuario"> --}}
-    <input type="email" name="email" placeholder="email">
+<form id="loginForm" onsubmit="login(event)">
+    <input type="text" name="username" id="username" placeholder="usuario">
+    <input type="email" name="email" id="email" placeholder="email">
     <input type="password" name="password" placeholder="contrase&nacute;a" required=required>
-    <button type="submit">Entrar</button>
+    <button type="button" onclick="CheckForm()">Entrar</button>
 </form>
+
+<script>
+    function CheckForm() {
+        const username = $('#username').val();
+        const email = document.getElementById("email").value;
+
+        if (username == "" && email == "") {
+            alert("Debe de rellenar al menos uno de los campos 'usuario' y/o 'email'.");
+        } else {
+            $('#loginForm').submit();
+        }
+    }
+</script>
