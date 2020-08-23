@@ -61,26 +61,20 @@ const login = (event) => {
 
 function logout() {
     fetch('http://localhost:3000/users/logout', {
-        method: 'POST'        
-    })    
-    .then(res => res.json());
-
-    fetch('http://localhost:3000/auth', {
+        method: 'POST',
         headers: {
-            authorization: null
+            'authorization': localStorage.getItem('authToken')
         }
-    })
-    .then(res => res.json())
+    })    
+    .then(res => res.json())    
     .then(res => {
-        localStorage.removeItem('authToken', res.token)
-        console.log("REMOVE authToken:", res.token);
-    })
-    .then((res) => {
         const { user } = res;
-        console.log(user, res);
-        window.location = "/";
-        document.querySelector('header').innerHTML = `Hasta pronto <i>${user.username}</i>; esperamos verte pronto por aqui nuevamente.`;
-        document.getElementById("login").innerHTML = `<a href="/login">Iniciar sesión</a>`;
+        console.log(user, res, res.message);
+        localStorage.removeItem('authToken')
+        console.log("REMOVE authToken.");
+
+        window.location.href = "/";
+        alert(`Hasta pronto ${user.name}; esperamos verte pronto por aqui nuevamente.`);
     })
     .catch(error => console.log(error));
 }

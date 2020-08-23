@@ -27,8 +27,12 @@ content-type: application/json
 ###
 
 
+GET http://localhost:3000/users/confirm/5f41356602f0292ad4c5232c
+
+
+###
 
 POST http://localhost:3000/users/logout
-    authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQxMGVmYWMwYTQ0ZjQ4ZjBmYWU3N2IiLCJpYXQiOjE1OTgxMTQwMTIsImV4cCI6MTY2MTIyOTIxMn0.GIl0WYyLlL6mKc65FXAzVUfj9iBTUVEsVV6jG3tPjfQ
+    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQxMzU2NjAyZjAyOTJhZDRjNTIzMmMiLCJpYXQiOjE1OTgxMTE2NzgsImV4cCI6MTY2MTIyNjg3OH0.Gq1GZEp3e01ybV1BgZ2KAizJ40IrfvrYz3eMq0WEl4E
     
 ###
