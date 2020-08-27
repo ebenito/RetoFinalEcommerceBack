@@ -23,6 +23,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.get('/set', (req, res) => {
+//   // https://web.dev/samesite-cookie-recipes/#handling-incompatible-clients
+//   res.cookie('geekshubsacademy.com', 'geekshubsacademy.com', { sameSite: 'none', secure: true });
+//   res.end();
+// });
+
 app.use('/', indexRouter);
 
 app.get('/auth', authenticate, (req, res) => {

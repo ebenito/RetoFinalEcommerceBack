@@ -1,3 +1,5 @@
+const URLorigin  = window.location.origin;
+
 const registro = (event) => {
     event.preventDefault();
     const credentials = {
@@ -8,7 +10,7 @@ const registro = (event) => {
     }
     console.log(credentials);
 
-    fetch('http://localhost:3000/users/registrar', {
+    fetch(URLorigin + '/users/registrar', {
         method: 'POST',
         body: JSON.stringify(credentials),
         headers: {
@@ -24,7 +26,7 @@ const registro = (event) => {
     })
     .then(res => {       
         window.alert("Le hemos envíado un correo electrónico; abralo y pulse en link para confirmar su cuenta. Gracias");
-        window.location = "http://localhost:3000/login";     
+        window.location = URLorigin + "/login";     
     })    
     .catch((error) => {
         console.error(error)
@@ -41,7 +43,7 @@ const login = (event) => {
     }
     console.log(credentials);
 
-    fetch('http://localhost:3000/users/login', {
+    fetch(URLorigin + '/users/login', {
         method: 'POST',
         body: JSON.stringify(credentials),
         headers: {
@@ -54,13 +56,13 @@ const login = (event) => {
         console.log("SET authToken:", res.token);
     })
     .then(res => {        
-        window.location = "http://localhost:3000/users/info";
+        window.location = URLorigin + "/users/info";
     })
     .catch(error => console.log(error));
 }
 
 function logout() {
-    fetch('http://localhost:3000/users/logout', {
+    fetch(URLorigin + '/users/logout', {
         method: 'POST',
         headers: {
             'authorization': localStorage.getItem('authToken')
@@ -81,7 +83,7 @@ function logout() {
 
 const token = localStorage.getItem('authToken');
 if (token) {
-    fetch('http://localhost:3000/auth', {
+    fetch(URLorigin + '/auth', {
         headers: {
             authorization: token
         }
