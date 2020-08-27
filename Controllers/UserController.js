@@ -228,7 +228,7 @@ const UserController = {
     } catch (error) {
       console.error(error)
       res.status(500).send({
-        message: "Ocurrió un problema al indentificar al usuario",
+        message: "Ocurrió un problema al indentificar al usuario: " + error,
       })
     }
   },

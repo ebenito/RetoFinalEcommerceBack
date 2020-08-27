@@ -1,0 +1,38 @@
+GET https://becomm.herokuapp.com/registro
+
+###
+
+POST https://becomm.herokuapp.com/users/registrar
+content-type: application/json
+
+{
+    "name": "prueba",
+    "username": "TEST",
+    "email":"prueba@hotmail.es",
+    "password":"1234"
+}
+
+###
+
+
+POST https://becomm.herokuapp.com/users/login
+content-type: application/json
+
+{
+    "username": "TEST",
+    "email":"prueba@hotmail.es",
+    "password":"1234"
+}
+
+###
+
+
+GET https://becomm.herokuapp.com/users/confirm/5f41356602f0292ad4c5232c
+
+
+###
+
+POST https://becomm.herokuapp.com/users/logout
+    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQxMGVmYWMwYTQ0ZjQ4ZjBmYWU3N2IiLCJpYXQiOjE1OTgxMTI5MTAsImV4cCI6MTY2MTIyODExMH0.AV20DdaDZGg8l88DFqxoHe_wUarXYnriH7K61VZC1m4
+    
+###
