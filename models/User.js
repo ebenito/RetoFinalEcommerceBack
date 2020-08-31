@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
         },
     rol: {
         type: String,
-        enum: ['cliente', 'admin']
+        enum: ['cliente', 'vendedor', 'admin']
     },
     confirmed: Boolean,
     tokens: [String],
