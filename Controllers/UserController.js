@@ -31,11 +31,14 @@ const UserController = {
       res.status(201).send(user)
     } catch (error) {
       console.error(error)
-      if (error.keyPattern != null) {       
-        return res.status(400).send({"message": "El usuario y/o email indicados ya estaban registrados; si es suyo trate de iniciar sesión, sino registrese con otro usuario distinto"});                                       
-      }else{
-          res.status(500).send(error)
-      }      
+      if (error.keyPattern) {
+        return res.status(400).send({
+          message:
+            "El usuario y/o email indicados ya estaban registrados; si es suyo trate de iniciar sesión, sino registrese con otro usuario distinto",
+        })
+      } else {
+        res.status(500).send(error)
+      }
     }
   },
   registerSync(req, res) {
@@ -98,6 +101,40 @@ const UserController = {
         res.status(500).send(error)
       })
   },
+  async InfoSync(req, res) {
+    try {
+      const user = await User.findOne({
+        $or: [
+          {
+            email: req.body.email,
+          },
+          {
+            username: req.body.username,
+          },
+        ],
+      })
+      if (!user) {
+        return res.status(400).send({
+          message: "Usuario o email incorrecto",
+        })
+      }
+
+      const isMatch = await bcrypt.compare(req.body.password, user.password)
+      console.log("Compara:", req.body.password, user.password, isMatch)
+
+      if (!isMatch) {
+        return res.status(400).send({
+          message: "Credenciales incorrectas",
+        })
+      }
+      res.status(200).send({ user })
+    } catch (error) {
+      console.error(error)
+      res.status(500).send({
+        message: "Ocurrió al obtener los datos del usuario: " + error,
+      })
+    }
+  },
   deleteSync(req, res) {
     User.findByIdAndDelete(req.params.id)
       .then((user) => {
@@ -131,14 +168,12 @@ const UserController = {
       res.send(user)
     } catch (error) {
       console.error(error)
-      res
-        .status(500)
-        .send({
-          message:
-            "Hubo un problema tratando de eliminar el usuario con id: " +
-            req.params.id,
-          error,
-        })
+      res.status(500).send({
+        message:
+          "Hubo un problema tratando de eliminar el usuario con id: " +
+          req.params.id,
+        error,
+      })
     }
   },
   async confirmAsync(req, res) {
@@ -203,23 +238,22 @@ const UserController = {
           message: "Usuario o email incorrecto",
         })
       }
-      const isMatch = await bcrypt.compare(req.body.password, user.password);
-      console.log("Compara:", req.body.password, user.password, isMatch);
+      const isMatch = await bcrypt.compare(req.body.password, user.password)
+      console.log("Compara:", req.body.password, user.password, isMatch)
 
       if (!isMatch) {
         return res.status(400).send({
           message: "Credenciales incorrectas",
         })
       }
-      
-      const token = await user.generateAuthToken();
-      if (user.tokens.length >= 5) 
-        user.tokens.shift();  //Solo guardo los 5 ultimos tokens, asi, si hay 5 o más, quito el más antiguo
-      user.tokens.push(token); // y añado el nuevo.
+
+      const token = await user.generateAuthToken()
+      if (user.tokens.length >= 5) user.tokens.shift() //Solo guardo los 5 ultimos tokens, asi, si hay 5 o más, quito el más antiguo
+      user.tokens.push(token) // y añado el nuevo.
 
       await User.findByIdAndUpdate(user._id, {
-        tokens: user.tokens
-      });
+        tokens: user.tokens,
+      })
 
       res.send({
         user,
@@ -235,7 +269,7 @@ const UserController = {
   async logout(req, res) {
     try {
       const user = await User.findByIdAndUpdate(
-        req.user._id,  //Lo obtiene del token recibido en la cabecera Authorization
+        req.user._id, //Lo obtiene del token recibido en la cabecera Authorization
         {
           $pull: {
             tokens: req.headers.authorization,
@@ -246,7 +280,7 @@ const UserController = {
       res.json({
         user,
         message: `${user.name} cerró sesión`,
-      })      
+      })
     } catch (error) {
       console.error(error)
       res.status(500).send({

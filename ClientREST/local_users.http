@@ -1,7 +1,3 @@
-GET http://localhost:3000/registro
-
-###
-
 POST http://localhost:3000/users/registrar
 content-type: application/json
 
@@ -11,6 +7,7 @@ content-type: application/json
     "email":"prueba@hotmail.es",
     "password":"1234"
 }
+
 
 ###
 
@@ -27,12 +24,46 @@ content-type: application/json
 ###
 
 
-GET http://localhost:3000/users/confirm/5f41356602f0292ad4c5232c
+GET http://localhost:3000/users/confirm/5f474b5d21125a00175c612a
 
 
+###
+
+
+PUT http://localhost:3000/users/actualiza/5f474b5d21125a00175c612a
+content-type: application/json
+
+{
+    "name": "Prueba generica"
+}
+
+
+###
+
+
+DELETE http://localhost:3000/users/borra/5f474b5d21125a00175c612a
+
+
+###
+
+
+POST http://localhost:3000/users/info
+content-type: application/json
+
+{
+    "username": "TEST",
+    "email":"prueba@hotmail.es",
+    "password":"1234"
+}
+
+    
 ###
 
 POST http://localhost:3000/users/logout
-    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQxMzU2NjAyZjAyOTJhZDRjNTIzMmMiLCJpYXQiOjE1OTgxMTE2NzgsImV4cCI6MTY2MTIyNjg3OH0.Gq1GZEp3e01ybV1BgZ2KAizJ40IrfvrYz3eMq0WEl4E
+    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQxMzU2NjAyZjAyOTJhZDRjNTIzMmMiLCJpYXQiOjE1OTg1MDYxNDAsImV4cCI6MTY2MTYyMTM0MH0.pnKPS5pvG-OejqLybpyi957FfgXMb3-jvbFwqblykqw
     
 ###
+
+### Solo para usuarios con rol Admin
+GET http://localhost:3000/users/todos
+    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ3NGI1ZDIxMTI1YTAwMTc1YzYxMmEiLCJpYXQiOjE1OTg4OTg5MTksImV4cCI6MTY2MjAxNDExOX0._pAnpk9l7rG3m2AR1YYB_MqwEXPWI3nEZCeiVJWH2ZY

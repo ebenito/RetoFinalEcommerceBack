@@ -1,7 +1,3 @@
-GET https://becomm.herokuapp.com/registro
-
-###
-
 POST https://becomm.herokuapp.com/users/registrar
 content-type: application/json
 
@@ -11,6 +7,7 @@ content-type: application/json
     "email":"prueba@hotmail.es",
     "password":"1234"
 }
+
 
 ###
 
@@ -27,12 +24,30 @@ content-type: application/json
 ###
 
 
-GET https://becomm.herokuapp.com/users/confirm/5f41356602f0292ad4c5232c
+GET https://becomm.herokuapp.com/users/confirm/5f474b5d21125a00175c612a
+
+
+###
+
+
+PUT https://becomm.herokuapp.com/users/actualiza/5f474b5d21125a00175c612a
+content-type: application/json
+
+{
+    "name": "Prueba generica"
+}
+
+
+###
+
+
+DELETE https://becomm.herokuapp.com/users/borra/5f474b5d21125a00175c612a
+
 
 
 ###
 
 POST https://becomm.herokuapp.com/users/logout
-    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQxMGVmYWMwYTQ0ZjQ4ZjBmYWU3N2IiLCJpYXQiOjE1OTgxMTI5MTAsImV4cCI6MTY2MTIyODExMH0.AV20DdaDZGg8l88DFqxoHe_wUarXYnriH7K61VZC1m4
+    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQxMzU2NjAyZjAyOTJhZDRjNTIzMmMiLCJpYXQiOjE1OTg1MDYxNDAsImV4cCI6MTY2MTYyMTM0MH0.pnKPS5pvG-OejqLybpyi957FfgXMb3-jvbFwqblykqw
     
 ###

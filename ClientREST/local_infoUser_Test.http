@@ -1,0 +1,38 @@
+
+POST http://localhost:3000/users/info1
+content-type: application/json
+
+{
+    "username": "TEST",
+    "email":"prueba@hotmail.es",
+    "password":"1234"
+}
+
+
+###
+
+
+POST http://localhost:3000/users/info2
+content-type: application/json
+
+{
+    "username": "TEST",
+    "email":"prueba@hotmail.es",
+    "password":"1234"
+}
+
+
+###
+
+
+POST http://localhost:3000/users/info3
+content-type: application/json
+
+{
+    "username": "TEST",
+    "email":"prueba@hotmail.es",
+    "password":"1234"
+}
+
+
+###

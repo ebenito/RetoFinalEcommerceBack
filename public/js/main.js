@@ -21,7 +21,7 @@ const registro = (event) => {
         res.json(); 
         console.log("res.json:",res);
         if (res.status == 400) {
-            throw new Error("Ya existe se ha registrado alguien con ese usuario y/o email; elige otro."); 
+            throw new Error("Ya existe se ha registrado alguien con ese usuario y/o email; elige otro, por favor."); 
         }
     })
     .then(res => {       
