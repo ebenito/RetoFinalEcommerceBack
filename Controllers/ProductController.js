@@ -11,7 +11,8 @@ const ProductController = {
     },
     getAll(req,res) {
         Product.find()
-        .populate('categories') //Sin esta línea nos da solo el ID, con ella saca todos los datos relacionados, a modo de inner join
+        .populate('categories') //Sin esta línea nos da solo el ID, con ella saca todos los datos relacionados, a modo de inner join. Hace referencia al nombre del campo del modelo.
+        .populate('userId') 
         .then(products => res.send(products))
         .catch(error => {
             console.error(error);
