@@ -45,6 +45,7 @@ router.get('/listado', async function (req, res, next) {
 //Solo usuarios con rol Admin:
 
 router.get('/todos', checkRol(['admin']), UserController.getAll);
+router.get('/vendedores', checkRol(['admin']), UserController.getAllVendors);
 
 
 //Pruebas de colocar procesos repetitivos en funciones:

@@ -2,6 +2,14 @@ const Category = require('../models/Category');
 
 const CategorieController = {
     getAll(req,res) {
+        Category.find().select('name')       
+        .then(products => res.status(201).send(products))
+        .catch(error => {
+            console.error(error);
+            res.status(500).send(error);
+        });
+    },
+    getAllWithCategories(req,res) {
         Category.find()
         .populate('products') //Sin esta línea nos da solo el ID, con ella saca todos los datos relacionados, a modo de inner join. Hace referencia al nombre del campo del modelo.
         .then(products => res.status(201).send(products))
@@ -9,7 +17,8 @@ const CategorieController = {
             console.error(error);
             res.status(500).send(error);
         });
-    },insert(req,res) {
+    },
+    insert(req,res) {
         Category.create(req.body)
          .then(category => res.status(201).send(category))
          .catch(error => {

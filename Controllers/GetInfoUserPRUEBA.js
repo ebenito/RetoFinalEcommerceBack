@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const GetInfoUserPRUEBA = {  
   async InfoAsync(req, res) {
     try {
-      if (await confirmaUsuario(req, res).message == "OK") {
+      if (await confirmaUsuario(req, res)) {
         const user = await User.findOne({
           $or: [{
               email: req.body.email
@@ -80,23 +80,13 @@ const confirmaUsuario = async (req, res) => {
     ],
   })
   if (!user) {
-    return res.status(400).send({
-      message: "Usuario o email incorrecto"
-    })
+    return false;
   }
   
   const isMatch = await bcrypt.compare(req.body.password, user.password);
   console.log("Compara:", req.body.password, user.password, isMatch);
 
-  if (!isMatch) {
-    return res.status(400).send({
-      message: "Credenciales incorrectas"
-    })
-  } else {
-    return res.status(200).send({
-      message: "OK"
-    })
-  }
+  return isMatch;
 }
 
 let CheckUsuario = (req) => {

@@ -15,6 +15,19 @@ const UserController = {
         res.status(500).send(error)
       })
   },
+  getAllVendors(req, res) {
+    User.find({
+          rol: 'vendedor'
+    })
+    .then((users) => {
+      res.send(users)
+      console.log("  -  Ejecutado UserController.getAllVendors")
+    })
+    .catch((error) => {
+      console.error(error)
+      res.status(500).send(error)
+    })
+  },
   async registerAsync(req, res) {
     try {
       const hash = await bcrypt.hash(req.body.password, 9)

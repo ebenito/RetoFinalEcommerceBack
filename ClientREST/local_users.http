@@ -67,3 +67,8 @@ POST http://localhost:3000/users/logout
 ### Solo para usuarios con rol Admin
 GET http://localhost:3000/users/todos
     authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ3NGI1ZDIxMTI1YTAwMTc1YzYxMmEiLCJpYXQiOjE1OTg4OTg5MTksImV4cCI6MTY2MjAxNDExOX0._pAnpk9l7rG3m2AR1YYB_MqwEXPWI3nEZCeiVJWH2ZY
+
+###
+
+GET http://localhost:3000/users/vendedores
+    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ3NGI1ZDIxMTI1YTAwMTc1YzYxMmEiLCJpYXQiOjE1OTg4OTg5MTksImV4cCI6MTY2MjAxNDExOX0._pAnpk9l7rG3m2AR1YYB_MqwEXPWI3nEZCeiVJWH2ZY

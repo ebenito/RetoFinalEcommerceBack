@@ -2,13 +2,13 @@ POST http://localhost:3000/productos/inserta
 content-type: application/json
 
 {
-    "name": "Abrigo calefactable",
+    "name": "pizza",
     "description" : "abrigo con calefacción incorporada. 3 posibles temperaturas. Nota: Requiere un PowerBank,",
     "price_wo_VAT" : 67,
     "VAT" : 21,
     "image_path" : "https://tubkala.com/wp-content/uploads/2020/03/ParkaCalefactableHombre.jpg",
     "stock" : 2,
-    "categories" : "5f4d5201a589435690d8bb31",
+    "categories" : ["5f4d5201a589435690d8bb31", "5f4f3ec9ed0649428c0f41e5"],
     "userId" : "5f2e7f3d7b1e580017568a32"
 }
 

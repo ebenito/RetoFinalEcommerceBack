@@ -1,9 +1,20 @@
 const Product = require('../models/Product');
+const Category = require('../models/Category');
 
 const ProductController = {
     insert(req,res) {
         Product.create(req.body)
-         .then(product => res.status(201).send(product))
+         .then(product => {
+            Category.updateMany(
+                { _id: { $in: req.body.categories } }, {$push:{products : product._id}}, {multi:true})
+            .then((dbres) => {
+                console.log(dbres);
+                res.status(201).send(product);
+            } )
+            //Category.findByIdAndUpdate()
+
+            
+         })            
          .catch(error => {
              console.error(error);
              res.status(500).send({message:'Hubo un problema al crear el producto.', error});

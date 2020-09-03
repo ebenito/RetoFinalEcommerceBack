@@ -4,6 +4,13 @@ GET http://localhost:3000/categorias/listado
 
 ###
 
+
+GET http://localhost:3000/categorias/listadoconcategorias
+
+
+###
+
+
 POST http://localhost:3000/categorias/inserta
 content-type: application/json
 
@@ -28,7 +35,3 @@ content-type: application/json
 
 DELETE http://localhost:3000/categorias/5f4f45b27ba64a2d0467a375
 content-type: application/json
-
-{
-    "name": "Abrigos calefactables"
-}
