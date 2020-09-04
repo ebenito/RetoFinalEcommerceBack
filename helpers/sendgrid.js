@@ -94,5 +94,5 @@ function EnviarFactura(email, res) {
 }
 
 module.exports.EnviarMailBienvenida = EnviarMailBienvenida;
-module.exports.enviarCorreo = EnviarCorreo;
+module.exports.EnviarCorreo = EnviarCorreo;
 module.exports.EnviarFactura = EnviarFactura;

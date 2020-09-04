@@ -2,13 +2,13 @@ POST http://localhost:3000/productos/inserta
 content-type: application/json
 
 {
-    "name": "pizza",
-    "description" : "abrigo con calefacción incorporada. 3 posibles temperaturas. Nota: Requiere un PowerBank,",
-    "price_wo_VAT" : 67,
+    "name": "Banda para el pelo microfibra Neon Band",
+    "description" : "Banda para el pelo de microfibra Neon Band.Dos colores disponibles.Banda para el pelo de microfibra muy transpirables y de tacto suave.Confortables y de rápido secado. Los colores de la pantalla pueden diferir del original.",
+    "price_VAT" : 2.95,
     "VAT" : 21,
-    "image_path" : "https://tubkala.com/wp-content/uploads/2020/03/ParkaCalefactableHombre.jpg",
-    "stock" : 2,
-    "categories" : ["5f4d5201a589435690d8bb31", "5f4f3ec9ed0649428c0f41e5"],
+    "image_path" : "https://tubkala.com/wp-content/uploads/2018/10/235033NeonBandCereza.jpg",
+    "stock" : 9,
+    "categories" : ["5f4f45b27ba64a2d0467a375", "5f511acc75706836d4411c6c"],
     "userId" : "5f2e7f3d7b1e580017568a32"
 }
 
@@ -23,8 +23,18 @@ content-type: application/json
     "price_VAT": 79.99
 }
 
+###
+
+
+DELETE  http://localhost:3000/productos/5f51266ef992b35b90040d84
+
 
 ###
 
 
 GET http://localhost:3000/productos/listado
+
+###
+
+
+GET http://localhost:3000/productos/vendedor/5f2e7f3d7b1e580017568a32

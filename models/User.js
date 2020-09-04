@@ -26,11 +26,11 @@ const UserSchema = new mongoose.Schema({
         enum: ['cliente', 'vendedor', 'admin']
     },
     confirmed: Boolean,
-    tokens: [String],
-    orders: [{
+    tokens: [String],    
+    ordersId: [{
         type: ObjectId,
         ref: 'Order'
-    }]
+    }],
 },{
     timestamps:true,
     toJSON: {
