@@ -31,6 +31,11 @@ DELETE  http://localhost:3000/productos/5f51266ef992b35b90040d84
 
 ###
 
+GET http://localhost:3000/productos/nombre/5f4d555021b10e58d8f4c3d4
+
+
+###
+
 
 GET http://localhost:3000/productos/listado
 

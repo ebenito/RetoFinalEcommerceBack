@@ -8,13 +8,14 @@ const ProductController = {
         Category.updateMany(
           { _id: { $in: req.body.categories } },
           { $push: { products: product._id } },
-          { multi: true } )
+          { multi: true }
+        )
           .then((dbres) => {
             //console.log(dbres)
             res.status(201).send(product)
           })
           .catch((error) => {
-            console.error(error)            
+            console.error(error)
           })
       })
       .catch((error) => {
@@ -57,6 +58,25 @@ const ProductController = {
           .status(500)
           .send({ message: "Hubo un problema al borrar el producto.", error })
       })
+  },
+  async getNameProduct(req, res) {
+    try {
+      const prod = await Product.findById(req.params.id)
+      //console.log(prod)
+      res.status(200).send(prod.name);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  },
+  getNameProductSync(req, res) {
+    Product.findById(req.params.id)
+    .then((prod) => {      
+      //console.log(prod);
+      res.send(prod.name);
+    })
+    .catch ((error) => {
+      res.status(500).send(error);
+    })
   },
   getAll(req, res) {
     Product.find()

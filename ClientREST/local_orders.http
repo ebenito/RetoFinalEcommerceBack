@@ -2,8 +2,8 @@ POST http://localhost:3000/pedidos/nuevo
 content-type: application/json
 
 {
-    "products": [{"_id" : "5f5125e4f9654e5a20250520", "cantidad" : 5},
-                 {"_id" : "5f4d555021b10e58d8f4c3d4", "cantidad" : 1}],
+    "products": [{"_id" : "5f4fc110b3df514424fe1bbc", "cantidad" : 2},
+                 {"_id" : "5f4fbff47b4ac040e85ec558", "cantidad" : 1}],
     "userId" : "5f3ea6b015cdc747e0b60a3c"
 }
 
