@@ -43,7 +43,7 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:3000/productos/5f645e4e280d783ce463ebda
+PUT http://localhost:3000/productos/5f4fbff47b4ac040e85ec558
 content-type: application/json
 
 {
@@ -70,6 +70,11 @@ GET http://localhost:3000/productos/listado
 
 
 GET http://localhost:3000/productos/vendedor/5f2e7f3d7b1e580017568a32
+
+###
+
+
+GET http://localhost:3000/productos/categoria/5f4f3ebaed0649428c0f41e4
 
 ###
 

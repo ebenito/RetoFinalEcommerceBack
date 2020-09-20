@@ -178,19 +178,28 @@ const ProductController = {
       .populate("userId")
       .then((products) => res.send(products))
       .catch((error) => {
-        console.error(error)
+        //console.error(error)
         res.status(500).send(error)
       })
   },
   getAllByVendor(req, res) {
     Product.find({ userId: req.params.id })
-      .populate("categories") //Sin esta línea nos da solo el ID, con ella saca todos los datos relacionados, a modo de inner join. Hace referencia al nombre del campo del modelo.
+      .populate("categories") 
+      .then((products) => res.send(products))
+      .catch((error) => {
+        //console.error(error)
+        res.status(500).send(error)
+      })
+  },
+  getAllByCategory(req, res) {
+    Product.find({ categories: req.params.id })
+      .populate("categories") 
       .then((products) => res.send(products))
       .catch((error) => {
         console.error(error)
         res.status(500).send(error)
       })
-  },
+  }
 }
 
 module.exports = ProductController

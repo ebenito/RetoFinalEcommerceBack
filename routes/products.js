@@ -14,6 +14,7 @@ router.get('/porpreciomayor', ProductController.getProductSortedByBiggerPrice);
 router.get('/pornombre', ProductController.getProductSortedByName);
 
 router.get('/vendedor/:id', ProductController.getAllByVendor);
+router.get('/categoria/:id', ProductController.getAllByCategory);
 router.get('/nombre/:id', ProductController.getNameProductSync);
 
 module.exports = router;
