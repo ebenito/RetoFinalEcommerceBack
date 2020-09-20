@@ -2,11 +2,11 @@ POST http://localhost:3000/productos/inserta
 content-type: application/json
 
 {
-    "name": "Banda para el pelo microfibra Neon Band",
-    "description" : "Banda para el pelo de microfibra Neon Band.Dos colores disponibles.Banda para el pelo de microfibra muy transpirables y de tacto suave.Confortables y de rápido secado. Los colores de la pantalla pueden diferir del original.",
-    "price_VAT" : 2.95,
+    "name": "Calcetines Técnicos CoolMax Low Joluvi",
+    "description" : "<h2>>Calcetines técnicos.</h2><ul><li>Zonas acolchadas que protegen de rozaduras.</li><li>Zona de ajuste de control de presión</li><li>Durabilidad excepcional gracias a sus zonas reforzadas.</li><li>Uniones de costura super planas que reducen las áreas de fricción.</li></ul>",
+    "price_VAT" : 5.95,
     "VAT" : 21,
-    "image_path" : "https://tubkala.com/wp-content/uploads/2018/10/235033NeonBandCereza.jpg",
+    "image_path" : "https://tubkala.com/wp-content/uploads/2020/07/230666_CoolmaxLow_01.jpg",
     "stock" : 9,
     "categories" : ["5f4f45b27ba64a2d0467a375", "5f511acc75706836d4411c6c"],
     "userId" : "5f2e7f3d7b1e580017568a32"
@@ -16,11 +16,20 @@ content-type: application/json
 ###
 
 
-PUT http://localhost:3000/productos/5f4d555021b10e58d8f4c3d4
+PUT http://localhost:3000/productos/5f4d547b21b10e58d8f4c3d3
 content-type: application/json
 
 {
-    "price_VAT": 79.99
+    "price_VAT": 39.95
+}
+
+###
+
+PUT http://localhost:3000/productos/5f645e4e280d783ce463ebda
+content-type: application/json
+
+{
+    "categories" : ["5f4f3ebaed0649428c0f41e4", "5f4d547b21b10e58d8f4c3d3"]
 }
 
 ###

@@ -56,7 +56,7 @@ const OrderController = {
     }
   },
   update(req, res) {
-    Order.findOneAndUpdate(req.param.id, req.body, { new: true })
+    Order.findOneAndUpdate(req.params.id, req.body, { new: true })
       .then((product) => res.send(product))
       .catch((error) => {
         console.error(error)

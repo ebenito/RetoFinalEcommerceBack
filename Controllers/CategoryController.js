@@ -9,7 +9,7 @@ const CategorieController = {
             res.status(500).send(error);
         });
     },
-    getAllWithCategories(req,res) {
+    getAllWithProducts(req,res) {
         Category.find()
         .populate('products') //Sin esta línea nos da solo el ID, con ella saca todos los datos relacionados, a modo de inner join. Hace referencia al nombre del campo del modelo.
         .then(products => res.status(201).send(products))
@@ -17,6 +17,14 @@ const CategorieController = {
             console.error(error);
             res.status(500).send(error);
         });
+    },
+    getCategoriesFromProduct(req,res){
+        Category.find({ products: req.params.id })
+            .then(categories => res.status(201).send(categories))
+            .catch(error => {
+                console.error(error);
+                res.status(500).send(error);
+            });
     },
     insert(req,res) {
         Category.create(req.body)
@@ -27,7 +35,7 @@ const CategorieController = {
          })
     },
     update(req,res) {
-        Category.findOneAndUpdate(req.param.id, req.body, {new:true})
+        Category.findOneAndUpdate(req.params.id, req.body, {new:true})
          .then(product => res.send(product))
          .catch(error => {
             console.error(error);

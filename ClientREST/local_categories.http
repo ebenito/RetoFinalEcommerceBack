@@ -5,7 +5,12 @@ GET http://localhost:3000/categorias/listado
 ###
 
 
-GET http://localhost:3000/categorias/listadoconcategorias
+GET http://localhost:3000/categorias/listadoconproductos
+
+
+###
+
+GET http://localhost:3000/categorias/porproducto/5f645e4e280d783ce463ebda
 
 
 ###
@@ -15,14 +20,14 @@ POST http://localhost:3000/categorias/inserta
 content-type: application/json
 
 {
-    "name": "Accesorios"
+    "name": "Abrigos"
 }
 
 
 ###
 
 
-PUT http://localhost:3000/categorias/5f4d5201a589435690d8bb31
+PUT http://localhost:3000/categorias/5f6395b1192b5a15d0637f6d
 content-type: application/json
 
 {
@@ -33,5 +38,5 @@ content-type: application/json
 ###
 
 
-DELETE http://localhost:3000/categorias/5f4f45b27ba64a2d0467a375
+DELETE http://localhost:3000/categorias/5f6395b1192b5a15d0637f6d
 content-type: application/json
