@@ -29,6 +29,15 @@ const OrderController = {
             //Resto el stock
             let newStock = nombProds.stock - newOrder.products[i].cantidad;
             await Product.findByIdAndUpdate(newOrder.products[i].id, {  stock: newStock });
+            if (newStock == 0 && nombProds.userId != null) {
+              sendgrid.EnviarCorreo(
+                nombProds.userId.email,
+                 "Se ha quedado sin stock de " + nombProds.name,
+                 "Reponga urgentemente el stock de este producto o retirelo de la venta.",
+                 `<h1>Se ha quedado sin stock de ${nombProds.name}:</h1><h2>Responga urgente el stock o retire el producto de la venta</h2><b>Si no realiza ninguna acción el producto seguirá en venta, quedando pendiente de servir a los clientes que lo adquieran.</b>`
+               );
+               console.log ('Correo de aviso de ruptura de stock enviado al vendedor');
+            }
 
             //Envio correo con resumen de pedido al administrador
             if (nombProds.userId != null) {
@@ -68,6 +77,50 @@ const OrderController = {
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: "Hubo un problema al crear el pedido.", error })
+    }
+  },
+  async getOrderInfo(req, res) {
+    try {      
+      const order = await Order.findById(req.params.id);
+      if (order != null) {
+        res.status(200).send(order);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Hubo un problema al obtener los datos del pedido." })
+    }
+  },  
+  async getOrdersByUserId(req, res) {
+    try {      
+      const order = await Order.find( { userId : req.params.id });
+      if (order != null) {
+        res.status(200).send(order);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Hubo un problema obtener los pedido del cliente." })
+    }
+  },
+  async updOrderPayed(req, res) {
+    try {      
+      const order = await Order.findByIdAndUpdate(req.body.id, { status: 'Pagado' }, { new: true });
+      if (order != null) {
+        res.status(200).send(order);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Hubo un problema establecer como pagado el pedido." })
+    }
+  },
+  async updOrderSended(req, res) {
+    try {      
+      const order = await Order.findByIdAndUpdate(req.body.id, { status: 'Enviado' }, { new: true });
+      if (order != null) {
+        res.status(200).send(order);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Hubo un problema establecer como pagado el pedido." })
     }
   },
   update(req, res) {

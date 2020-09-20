@@ -8,3 +8,29 @@ content-type: application/json
 }
 
 ###
+
+GET http://localhost:3000/pedidos/info/5f5229d4b9270a6634ec11bc
+
+
+###
+
+GET http://localhost:3000/pedidos/cliente/5f2a98352be6140017ba697c
+
+###
+
+POST http://localhost:3000/pedidos/pagado
+content-type: application/json
+
+{
+    "id": "5f51e86f1fc69b4724bc73f1"
+}
+
+
+###
+
+POST http://localhost:3000/pedidos/enviado
+content-type: application/json
+
+{
+    "id": "5f51e86f1fc69b4724bc73f1"
+}
