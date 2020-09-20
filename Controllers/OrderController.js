@@ -25,9 +25,13 @@ const OrderController = {
           //const nombProds = await Product.findById( newOrder.products[i].id );
           const nombProds = await buscaProdAsync( newOrder.products[i].id );
             lstProds += `<li>${nombProds.name}: Cant: ${newOrder.products[i].cantidad}</li>`;
+            
+            //Resto el stock
+            let newStock = nombProds.stock - newOrder.products[i].cantidad;
+            await Product.findByIdAndUpdate(newOrder.products[i].id, {  stock: newStock });
 
-             //Envio correo con resumen de pedido al administrador
-             if (nombProds.userId != null) {
+            //Envio correo con resumen de pedido al administrador
+            if (nombProds.userId != null) {
                sendgrid.EnviarCorreo(
                 nombProds.userId.email,
                  "Se ha realizado un pedido",
@@ -35,7 +39,7 @@ const OrderController = {
                  `<h1>Enhorabuena ${nombProds.userId.name}, acaba de vender este producto:</h1><li>${nombProds.name}: Cant: ${newOrder.products[i].cantidad}</li><h2>Revise los detalles del pedido ID ${newOrder.id}`
                );
                console.log ('Correo de aviso al vendedor enviado')
-             };
+            };
           };
 
           //Obtengo los datos del cliente, y le añada refencia el pedido

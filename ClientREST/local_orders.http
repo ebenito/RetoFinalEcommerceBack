@@ -4,7 +4,7 @@ content-type: application/json
 {
     "products": [{"_id" : "5f677f6bb4cbb83ffc414b67", "cantidad" : 2},
                  {"_id" : "5f4fc110b3df514424fe1bbc", "cantidad" : 1}],
-    "userId" : "5f2a98352be6140017ba697c"
+    "userId" : "5f2e7fd183134e0017cc978b"
 }
 
 ###
