@@ -93,6 +93,75 @@ const ProductController = {
       res.status(500).send(error);
     }
   },
+  async getProductSortedBySmallerPrice(req, res) {
+    try {
+      //https://docs.mongodb.com/manual/reference/operator/aggregation/sort/
+      const prods = await Product.aggregate( 
+        [
+          { $sort : { price_VAT: 1 } }
+        ])      
+      //console.log(prods)
+      res.status(200).send(prods);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },  
+  async getProductSortedByBiggerPrice(req, res) {
+    try {
+      //https://docs.mongodb.com/manual/reference/operator/aggregation/sort/
+      const prods = await Product.aggregate( 
+        [
+          { $sort : { price_VAT: -1 } }
+        ])      
+      //console.log(prods)
+      res.status(200).send(prods);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },    
+  async getProductSortedByName(req, res) {
+    try {
+      //https://docs.mongodb.com/manual/reference/operator/aggregation/sort/
+      const prods = await Product.aggregate( 
+        [
+          { $sort : { name: 1 } }
+        ])      
+      //console.log(prods)
+      res.status(200).send(prods);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },  
+  async getProductSortedByOrdersQty(req, res) {
+    try {
+      //https://docs.mongodb.com/manual/reference/operator/aggregation/project/index.html
+      const mejoresVentas= await Product.aggregate([
+       {$project:
+           {
+              _id: "$_id",
+              nombre : "$name",
+              PrecioIVA : "$price_VAT",
+              stock : "$stock",
+              ventas:{$size:{"$ifNull":["$ordersId",[]]} }
+           },
+       },
+       {$match: {
+           ventas: {
+               $gt:0
+           }
+       }},
+       {$sort : {ventas : -1}}, 
+       //{$limit : 5 }
+    ]);
+    res.status(200).json({'ProdcutosMasVendidos': mejoresVentas});
+   } catch (error) {
+      console.error(error)
+      res.status(500).json({ message: 'Ocurrió un error al realizar la consulta' })
+   }
+  },
   getNameProductSync(req, res) {
     Product.findById(req.params.id)
     .then((prod) => {      

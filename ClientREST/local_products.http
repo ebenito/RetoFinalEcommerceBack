@@ -70,3 +70,22 @@ GET http://localhost:3000/productos/listado
 
 
 GET http://localhost:3000/productos/vendedor/5f2e7f3d7b1e580017568a32
+
+###
+
+
+GET http://localhost:3000/productos/segunventas
+
+
+###
+
+GET http://localhost:3000/productos/porpreciomenor
+
+
+###
+
+GET http://localhost:3000/productos/porpreciomayor
+
+###
+
+GET http://localhost:3000/productos/pornombre
