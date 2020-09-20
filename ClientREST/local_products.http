@@ -15,6 +15,24 @@ content-type: application/json
 
 ###
 
+POST http://localhost:3000/productos/inserta
+content-type: application/json
+
+{
+    "name": "Mochila Joluvi Hydro 5",
+    "description" : "<h2>>Mochila Joluvi Hydro 5</h2><ul><li>Capacidad de la mochila: 5 l.</li><li>Peso: 350 gr.</li><li>Medidas: 37x9x19 cm</li><li>Material de la mochila: Poliéster Ripstop</li><liMaterial de la bolsa de agua: TPU</li></ul>",
+    "price_VAT" : 29.90,
+    "VAT" : 21,
+    "image_path" : "https://tubkala.com/wp-content/uploads/2018/10/233417_HYDRO_5_01-62-1.jpg",
+    "stock" : 9,
+    "categories" : ["5f4f45b27ba64a2d0467a375", "5f677f36b4cbb83ffc414b66"],
+    "userId" : "5f2e7fd183134e0017cc978b"
+}
+
+
+###
+
+
 
 PUT http://localhost:3000/productos/5f4d547b21b10e58d8f4c3d3
 content-type: application/json

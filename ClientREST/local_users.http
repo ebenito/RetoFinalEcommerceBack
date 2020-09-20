@@ -2,7 +2,7 @@ POST http://localhost:3000/users/registrar
 content-type: application/json
 
 {
-    "name": "prueba",
+    "name": "Pruebas",
     "username": "TEST",
     "email":"prueba@hotmail.es",
     "password":"1234"

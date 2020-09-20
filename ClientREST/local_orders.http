@@ -2,9 +2,9 @@ POST http://localhost:3000/pedidos/nuevo
 content-type: application/json
 
 {
-    "products": [{"_id" : "5f4fc110b3df514424fe1bbc", "cantidad" : 2},
-                 {"_id" : "5f4fbff47b4ac040e85ec558", "cantidad" : 1}],
-    "userId" : "5f3ea6b015cdc747e0b60a3c"
+    "products": [{"_id" : "5f677f6bb4cbb83ffc414b67", "cantidad" : 2},
+                 {"_id" : "5f4fc110b3df514424fe1bbc", "cantidad" : 1}],
+    "userId" : "5f2a98352be6140017ba697c"
 }
 
 ###

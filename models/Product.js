@@ -33,10 +33,10 @@ let ProductSchequema = new mongoose.Schema({
         type: ObjectId,
         ref: 'Order'
     }],
-    userId:[{
+    userId:{
         type: ObjectId,
         ref: 'User'
-    }]
+    }
 },{
     timestamps: true,
     toJSON: {

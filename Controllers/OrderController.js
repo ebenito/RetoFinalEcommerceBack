@@ -24,10 +24,21 @@ const OrderController = {
           for (let i = 0; i <= newOrder.products.length-1; i++) {
           //const nombProds = await Product.findById( newOrder.products[i].id );
           const nombProds = await buscaProdAsync( newOrder.products[i].id );
-            lstProds += `<li>${nombProds.name}: Cant: ${newOrder.products[i].cantidad}</li>`
+            lstProds += `<li>${nombProds.name}: Cant: ${newOrder.products[i].cantidad}</li>`;
+
+             //Envio correo con resumen de pedido al administrador
+             if (nombProds.userId != null) {
+               sendgrid.EnviarCorreo(
+                nombProds.userId.email,
+                 "Se ha realizado un pedido",
+                 "Enhorabuena, acaba de realizar un pedido; revise los detalles en la plataforma para realizar el envío.",
+                 `<h1>Enhorabuena ${nombProds.userId.name}, acaba de vender este producto:</h1><li>${nombProds.name}: Cant: ${newOrder.products[i].cantidad}</li><h2>Revise los detalles del pedido ID ${newOrder.id}`
+               );
+               console.log ('Correo de aviso al vendedor enviado')
+             };
           };
 
-          //Obtengo los datos del cliente
+          //Obtengo los datos del cliente, y le añada refencia el pedido
           const user = await  User.findByIdAndUpdate(req.body.userId,
                         { $push: { ordersId: newOrder._id } },
                         { new: true })
@@ -37,14 +48,14 @@ const OrderController = {
                 <div> Orden de compra: <ul>`
             bodyHTML += lstProds +"</ul></div>";
 
+            //Envio correo con resumen de pedido al cliente
             sendgrid.EnviarCorreo(
               user.email,
               "Gracias por su pedido",
               "Hemos recibido correctamente su prepido, en breve lo recibirá. Gracias por su compra",
               bodyHTML
             );
-
-            console.log ('Correo de agradecimiento enviado');
+            console.log ('Correo de agradecimiento enviado')           
             
             res.status(201).json({ newOrder, message: "pedido creado con éxito" })
           };
@@ -135,9 +146,11 @@ var buscaProdPromise =  function(prodID) {
   });
 }
 
+
 var buscaProdAsync = async function (prodID) {
   try {
     const prod = await Product.findById(prodID)
+    .populate("userId");
     //console.log(prod)
     if (prod != null){
       return prod;
