@@ -34,7 +34,7 @@ const OrderController = {
                 nombProds.userId.email,
                  "Se ha quedado sin stock de " + nombProds.name,
                  "Reponga urgentemente el stock de este producto o retirelo de la venta.",
-                 `<h1>Se ha quedado sin stock de ${nombProds.name}:</h1><h2>Responga urgente el stock o retire el producto de la venta</h2><b>Si no realiza ninguna acción el producto seguirá en venta, quedando pendiente de servir a los clientes que lo adquieran.</b>`
+                 `<h1>Se ha quedado sin stock de ${nombProds.name}:</h1><h2>Reponga urgente el stock o retire el producto de la venta</h2><b>Si no realiza ninguna acción el producto seguirá en venta, quedando pendiente de servir a los clientes que lo adquieran.</b>`
                );
                console.log ('Correo de aviso de ruptura de stock enviado al vendedor');
             }

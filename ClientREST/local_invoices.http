@@ -1,0 +1,23 @@
+
+POST http://localhost:3000/factura/nueva
+content-type: application/json
+
+{
+    "OrderId": "5f51e86f1fc69b4724bc73f1",
+    "UserId":"5f3ea6b015cdc747e0b60a3c",
+    "address":"calle Vieja, 5; 28850 - Torrejon de Ardoz - Madrid"
+}
+
+###
+
+GET http://localhost:3000/factura/5f68e63e40c9fe5f846b1770
+
+
+###
+
+PUT http://localhost:3000/factura/modificar/5f68e63e40c9fe5f846b1770
+content-type: application/json
+
+{
+    "address":"Calle Nueva, 15; 28850 - Torrejón de Ardoz - Madrid"
+}

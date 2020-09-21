@@ -5,7 +5,6 @@ router.post('/nuevo', OrderController.insert)
 router.post('/pagado', OrderController.updOrderPayed)
 router.post('/enviado', OrderController.updOrderSended)
 
-
 router.get('/info/:id', OrderController.getOrderInfo);
 router.get('/cliente/:id', OrderController.getOrdersByUserId);
 

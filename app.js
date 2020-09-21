@@ -13,6 +13,7 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var categoriesRouter = require('./routes/categories');
 var ordersRouter = require('./routes/orders');
+var invoicesRouter = require('./routes/invoice');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use('/users', usersRouter);
 app.use('/productos', productsRouter);
 app.use('/categorias', categoriesRouter);
 app.use('/pedidos', ordersRouter);
+app.use('/factura', invoicesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -65,4 +67,5 @@ app.use(function(err, req, res, next) {
 // {
 //     console.log("correo enviado");
 // }
+
 module.exports = app;
