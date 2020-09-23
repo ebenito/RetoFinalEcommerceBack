@@ -6,10 +6,6 @@ const InvoiceSchequema = new mongoose.Schema({
         type:ObjectId,
         ref:'Order'
     },
-    UserId:{
-        type:ObjectId,
-        ref:'User'
-    },
     address:{
         type: String,
         required: true

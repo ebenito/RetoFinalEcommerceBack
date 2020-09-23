@@ -81,7 +81,8 @@ const OrderController = {
   },
   async getOrderInfo(req, res) {
     try {      
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id)
+      .populate("products._id");
       if (order != null) {
         res.status(200).send(order);
       }
@@ -92,7 +93,8 @@ const OrderController = {
   },  
   async getOrdersByUserId(req, res) {
     try {      
-      const order = await Order.find( { userId : req.params.id });
+      const order = await Order.find( { userId : req.params.id })
+      .populate("products._id");
       if (order != null) {
         res.status(200).send(order);
       }
