@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-const sendgrid = require('../helpers/sendgrid');
+const sendgrid = require("../helpers/sendgrid")
 const jwt = require('jsonwebtoken');
 
 const UserController = {
@@ -195,17 +195,17 @@ const UserController = {
         req.params.id,
         { confirmed: true },
         { new: true }
-      )
+      );
 
-      await sendgrid.enviarCorreo(
+      sendgrid.EnviarCorreo(
         user.email,
         "Gracias por confirmar tu correo",
-        `correo ${user.email} confirmado`,
+        `Correo ${user.email} confirmado`,
         `<h3>Muchas gracias ${user.name} por confirmar su correo ${user.email}.</h3><h4>Ya puede usar nuestros servicios.</h4>`
-      ),
-        console.log("Correo gracias por confirmar enviado")
+      );     
+      console.log("Correo gracias por confirmar enviado");
 
-      res.send(user)
+      res.send(user);
     } catch (error) {
       console.error(error)
       res.status(500).send({

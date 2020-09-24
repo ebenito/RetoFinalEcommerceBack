@@ -24,7 +24,7 @@ content-type: application/json
 ###
 
 
-GET https://becomm.herokuapp.com/users/confirm/5f474b5d21125a00175c612a
+GET https://becomm.herokuapp.com/users/confirm/5f6bcd9f48900800170e0828
 
 
 ###
