@@ -43,11 +43,11 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:3000/productos/5f4fbff47b4ac040e85ec558
+PUT http://localhost:3000/productos/5f5125e4f9654e5a20250520
 content-type: application/json
 
 {
-    "categories" : ["5f4f3ebaed0649428c0f41e4", "5f4d547b21b10e58d8f4c3d3"]
+    "categories" : ["5f4f45b27ba64a2d0467a375"]
 }
 
 ###

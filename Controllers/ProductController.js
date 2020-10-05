@@ -26,17 +26,17 @@ const ProductController = {
       })
   },
   update(req, res) {
-    if (req.body.categories != null){ //Si envio una categoria ya previamente vinculada se duplicaría, por eso elimino antes las enviadas, por si ya existen.
-      req.body.categories.forEach((item) => {
-        Category.findByIdAndUpdate(
-          item,
-          { $pull: { products: req.params.id }}).select('name')
-          .then ((res) => {console.log("Producto borrado de la categoria:", res)})
-          .catch(error => {
-            console.error(error);
-            // res.status(500).send(error);
-          }); 
-      });
+    if (req.body.categories != null){ //Si envio una categoria ya previamente vinculada se duplicaría, por eso elimino antes las enviadas, por si ya existen.     
+      Category.updateMany(
+        { }, //busca en toda la colección
+        { $pull: { products: req.params.id } },
+        { multi: true }
+      )
+      .then ((res) => {console.log("Producto borrado de las categorias que tenía asociadas.")})
+      .catch(error => {
+        console.error(error);
+        // res.status(500).send(error);
+      }); 
     };
     Product.findByIdAndUpdate(req.params.id, req.body, { new: true })
       .then((product) => {
@@ -64,13 +64,9 @@ const ProductController = {
   delete(req, res) {
     Product.findByIdAndDelete(req.params.id, req.body)
       .then((product) => {
-        Category.findByIdAndUpdate(
-          product.categories,
-          {
-            $pull: {
-              products: product._id,
-            },
-          },
+        Category.updateMany(
+          { _id: { $in: product.categories } },
+          { $pull: { products: product._id } },
           { multi: true }
         ).then((dbres) => {
           //console.log(dbres)

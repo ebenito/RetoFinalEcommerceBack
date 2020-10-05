@@ -4,7 +4,7 @@ require('dotenv').config();
 let MONGO_URI;
 
   //Conectamos a MongoDB; en producción creamos la variable de entorno con la cadena de conexión en producción, que incluye la password (asi no se verá publicamente al estar publicado en GIT) y en desarrollo usará la BD local.
-   switch (process.env.Entorno) {
+   switch (process.env.NODE_ENV) {
     case 'local':
       MONGO_URI = process.env.MongoDBLocal;
       break;
@@ -28,7 +28,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() =>
-    console.log("Conectado con éxito a MongoDB, en " + process.env.Entorno))
+    console.log("Conectado con éxito a MongoDB, en " + process.env.NODE_ENV))
   .catch((error) => {
     console.log('Ocurrió un error a concectar al servidor MongoDB:' + error);
     console.error(error);
